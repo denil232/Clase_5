@@ -1,0 +1,71 @@
+#avg_ {
+
+    text-align: center;
+    margin: 16px;
+    padding: 10px;
+    background-color: rgb(225, 234, 241);
+    border: 1px solid rgb(2, 2, 2);
+    font-size: 15px;
+    max-width: 410px;
+    font-weight: bold;
+    color: rgb(38, 36, 44);
+
+}
+
+#form {
+
+    text-align: center;
+    border: 2px solid;
+    border-radius: 20px;
+    border-color: black;
+    max-width: 400px;
+    padding: 20px;
+    margin: 10px;
+    background-color: rgba(0, 255, 136, 0.253);
+
+}
+
+input {
+    
+    width: 200px;
+    height: 20px;
+    margin: 1px;
+    max-width: 200px;
+    border: 2px solid rgb(153, 197, 238);
+    border-radius: 5px;
+
+}
+
+label {
+
+    color: rgb(16, 24, 58);
+    margin-right: 150px;
+
+}
+
+button {
+
+    margin: 15px;
+    background-color: rgb(33, 216, 192);
+    border: 2px;
+    border-radius: 10px;
+    font-size: 10px;
+    width: 90px;
+    height: 35px;
+    max-width: 250px;
+    margin-right: 131px;
+
+}
+
+thead {
+    background-color: rgba(0, 0, 0, 0.051);
+}
+
+table {
+
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+
+}
+

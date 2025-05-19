@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Promedio de Clases</title>
+</head>
+
+<body>
+
+    <!-- Centrado epico, pueden cuestionar mis metodos pero no mis resultados hahahdvfd XDDDDD -->
+    <center>
+        <h2>Seguimiento de Calificaciones de Estudiantes</h2>
+        <div id="avg_">Promedio de Calificaciones: No disponible</div>
+        <div id="form">
+
+        <form id="studentForm">
+            <div>
+                <label for="name">Nombre:</label>
+                <br>
+                <input type="text" id="name" required
+                oninvalid="this.setCustomValidity('Porfavor rellene el campo Nombre.')" oninput="this.setCustomValidity('')">
+            </div>
+            <div>
+                <label for="lastName">Apellido:</label>
+                <br>
+                <input type="text" id="lastName" required
+                oninvalid="this.setCustomValidity('Porfavor rellene el campo Apellido.')" oninput="this.setCustomValidity('')">
+            </div>
+            <div>
+                <label for="grade">Nota:</label>
+                <br>
+                <input type="number" id="grade" step="0.1" min="1" max="7" required
+                oninvalid="this.setCustomValidity('Porfavor rellene el campo Nota.')" oninput="this.setCustomValidity('')">
+            </div>
+            <div>
+                <label for="date">Fecha:</label>
+                <br>
+                <input type="date" id="date" required
+                oninvalid="this.setCustomValidity('Porfavor rellene el campo Fecha.')" oninput="this.setCustomValidity('')">
+            </div>
+            <button type="submit" id="save_">Guardar Alumno</button>
+            <button style="display: none;" onclick="save()" id="mod_bt" >Guardar Alumno Modificado</button>
+
+        </form>
+        </div>
+        <table id="studentsTable" border="1" cellpadding="8" cellspacing="0">
+        <thead>
+            <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Nota</th>
+            <th>Fecha</th>
+            <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!--Datos de las filas de cada alumno-->
+        </tbody>
+        </table>
+    </center>
+
+    <script src="./lister.js"></script>
+</body>
+</html>
