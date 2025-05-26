@@ -104,3 +104,36 @@ function modificar(student){
     document.getElementById("save_dinamic").innerHTML = `<input type="button" class="save-action" onclick="modificarTabla(${index})" value="Modificar Alumno">`;
 
 }
+
+function actualizarEstadisticas() {
+    const total = students.length;
+    const aprobados = students.filter(s => s.grade >= 4).length;
+    const reprobados = total - aprobados;
+
+    document.getElementById("totalStudents").textContent = total;
+    document.getElementById("passedStudents").textContent = aprobados;
+    document.getElementById("failedStudents").textContent = reprobados;
+}
+
+function promedio(){
+    if(students.length === 0){
+        avarageDiv.textContent = "Promedio General del Curso: N/A";
+        actualizarEstadisticas(); 
+        return;  
+    }
+    const total = students.reduce((sum, student) => sum + student.grade, 0);
+    const prom = total / students.length;
+    avarageDiv.textContent = "Promedio General del Curso: " + prom.toFixed(1);
+
+    actualizarEstadisticas();
+}
+
+function actualizarEstadisticas() {
+    const total = students.length;
+    const aprobados = students.filter(s => s.grade >= 4).length;
+    const reprobados = total - aprobados;
+
+    document.getElementById("totalStudents").textContent = total;
+    document.getElementById("passedStudents").textContent = aprobados;
+    document.getElementById("failedStudents").textContent = reprobados;
+}

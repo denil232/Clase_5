@@ -42,7 +42,7 @@ form{
 }
 
 form div{
-    margin-bottom: 15px;
+    margin-bottom: 30px;
 }
 
 form label{
@@ -124,3 +124,22 @@ button:hover{
 .save-action:hover{
     background-color: rgb(66, 217, 255);
 }
+
+#statistics{
+    width: 100%;
+    border-collapse:;
+    background-color: rgb(80, 218, 149);
+    border-radius: 40px;
+    box-shadow: 0 10px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 3px solid rgb(48, 196, 196);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 30px;
+    background-color: #7ddaff63;
+    color: #000000;
+    font-size: 15px;
+    font-weight: bold;
+
+}
+

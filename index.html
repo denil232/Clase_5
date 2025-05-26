@@ -30,6 +30,12 @@
             <input type="number" id="grade" step="0.1" min="1" max="7" required oninvalid="this.setCustomValidity('Ingresa una Nota')" oninput="this.setCustomValidity('')">
         </div>
         <div id="save_dinamic"><button type="submit" id="save_">Guardar Alumno</button></div>
+        <div id="statistics">
+            <p>Numero de Alumnos: <span id="totalStudents">0</span></p>
+            <p>Alumnos Aprobados : <span id="passedStudents">0</span></p>
+            <p>Alumnos Reprobados : <span id="failedStudents">0</span></p>
+          </div>
+          
     </form>
 
     <table id="studentsTable" border="1" cellpadding="8" cellspacing="0">
@@ -52,3 +58,5 @@
     </main>
 </body>
 </html>
+
+  
