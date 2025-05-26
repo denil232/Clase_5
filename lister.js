@@ -128,12 +128,3 @@ function promedio(){
     actualizarEstadisticas();
 }
 
-function actualizarEstadisticas() {
-    const total = students.length;
-    const aprobados = students.filter(s => s.grade >= 4).length;
-    const reprobados = total - aprobados;
-
-    document.getElementById("totalStudents").textContent = total;
-    document.getElementById("passedStudents").textContent = aprobados;
-    document.getElementById("failedStudents").textContent = reprobados;
-}
