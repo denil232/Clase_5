@@ -1,78 +1,106 @@
-// Declaracion de constantes Globales xd
-const students = [];
-const modify_ = document.getElementById("avg_");
-const tableBody = document.querySelector("#studentsTable tbody");
+const students=[]
+const tableBody=document.querySelector("#studentsTable tbody")
+const avarageDiv=document.getElementById("avarage");
 
-document.getElementById("studentForm").addEventListener("submit", function (e){
-e.preventDefault();
-    
-    // Obtencion de datos ingresados por el usuario
-    const name = document.getElementById("name").value.trim();
-    const lastName = document.getElementById("lastName").value.trim();
-    const grade = parseFloat(document.getElementById("grade").value);
-    const date = document.getElementById("date").value.trim();
+document.getElementById("studentForm").addEventListener("submit",function(e){
+    e.preventDefault();
+    const name=document.getElementById("name").value.trim();
+    const lastName=document.getElementById("lastName").value.trim();
+    const fecha=document.getElementById("fecha").value.trim();
+    const grade=parseFloat(document.getElementById("grade").value);
 
-    if(!name || !lastName || isNaN(grade) || grade<1 || grade>7 || !date){
-        alert("Error al ingresar Datos");
+    if(!name || !lastName || !fecha || isNaN(grade) || grade<1 || grade>7){
+        alert("Error al ingresar Datos")
         return
     }
 
-    // Creamos una var const con los datos ingresados por la persona
-    const student = {name, lastName, grade, date};
+    const student={name,lastName,fecha,grade};
 
-    console.log(students)
-    if (students.indexOf(student) > -1){
-        console.log("xdxddd", students.indexOf(student))
-    }
-
-    // Se los agregamos al array principal
     students.push(student);
-
-    // LLamamos a la funcion de contenido dinamico
-    addStudentToTable(student);
-
-    // Calculamos el promedio y mostramos en pantalla
-    calcularPromedio();
-
-    // Se limpia el formulario indexado xd
-    this.reset();
-
-
+    //console.log(students);
+    addStudentToTable(student)
+    promedio()
+    this.reset()
 });
 
-// Funcion encargada de dar contenido dinamico dependiendo de la cantidad de alumnos
 function addStudentToTable(student){
-
-    // Se crea la variable almacenando el documento seleccionado
-    const row = document.createElement("tr");
-    
-    let index_ = students.length;
-    // Le agregamos contenido
-    row.innerHTML = `
-      <td>${student.name}</td>
-       <td>${student.lastName}</td>
-       <td>${student.grade}</td>
-       <td>${student.date}</td>`;
-    
-    // Se le aplican los cambios y se agregan al html
+    const row=document.createElement("tr");
+    row.innerHTML=`
+        <td>${student.name}</td>
+        <td>${student.lastName}</td>
+        <td>${student.fecha}</td>
+        <td>${student.grade}</td>
+        <td> <button class="delete-btn" ${student.actions}>Eliminar</button>
+        <button class="update-action" ${student.actions}">Modificar</button>
+        </td>
+        `;
+        row.querySelector(".delete-btn").addEventListener("click",function(){
+            deleteEstudiante(student,row);
+        });
+        row.querySelector(".update-action").addEventListener("click", function(){
+            modificar(student);
+        });
     tableBody.appendChild(row);
 }
 
-// Funcion encargada de sacar el promedio de los students xd
-function calcularPromedio(){
-    let CANT_ST = students.length;
+function deleteEstudiante(student,row){
+    const index=students.indexOf(student);
+    if(index>-1){
+        students.splice(index,1);
+        promedio();
+        row.remove();
+    }
+}
 
-    if (!students){
-        modify_.innerHTML = `Promedio de Calificaciones: ${total/CANT_ST}`;
-        return
+function promedio(){
+    if(students.length===0){
+        avarageDiv.textContent="Promedio General del Curso: N/A"
+        return  
+    }
+    const total=students.reduce((sum,student)=>sum+student.grade,0)
+    const prom=total/students.length;
+    avarageDiv.textContent="Promedio General del Curso: "+prom.toFixed(2);
+}
+
+function modificarTabla(index) {
+
+    // Obtener nuevos datos del formulario
+    const name = document.getElementById("name").value.trim();
+    const lastName = document.getElementById("lastName").value.trim();
+    const grade = parseFloat(document.getElementById("grade").value);
+    const fecha = document.getElementById("fecha").value.trim();
+
+    // Validación básica
+    if (!name || !lastName || isNaN(grade) || grade < 1 || grade > 7 || !fecha) {
+        alert("Error al modificar datos");
+        return;
     }
 
-    // Se declara la suma de todos los promedios en 0
-    let total = 0;
-    
-    // Por cada estudiante se va sumando hasta dividirlo por la cantidad
-    for (elem of students){
-        total = total + elem.grade;
-    }
-    modify_.innerHTML = `Promedio de Calificaciones: ${total/CANT_ST}`;
+    // Actualizar el objeto en el array
+    students[index] = { name, lastName, grade, fecha };
+
+    // Limpiar y volver a generar toda la tabla
+    tableBody.innerHTML = "";
+    students.forEach(addStudentToTable);
+
+    // Volver a mostrar botón "Guardar Alumno"
+    document.getElementById("save_dinamic").innerHTML = `<button type="submit" id="save_">Guardar Alumno</button>`;
+
+    // Limpiar el formulario
+    document.getElementById("studentForm").reset();
+
+    // Recalcular promedio
+    avg_prom();
+}
+
+function modificar(student){
+    let index = students.indexOf(student)
+
+    document.getElementById("name").value = students[index]["name"]
+    document.getElementById("lastName").value = students[index]["lastName"]
+    document.getElementById("grade").value = students[index]["grade"]
+    document.getElementById("fecha").value = students[index]["fecha"]
+
+    document.getElementById("save_dinamic").innerHTML = `<input type="button" class="save-action" onclick="modificarTabla(${index})" value="Modificar Alumno">`;
+
 }
